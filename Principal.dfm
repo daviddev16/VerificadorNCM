@@ -11,4 +11,12 @@ object Form2: TForm2
   Font.Name = 'Segoe UI'
   Font.Style = []
   TextHeight = 15
+  object Button1: TButton
+    Left = 168
+    Top = 216
+    Width = 75
+    Height = 25
+    Caption = 'Iniciar'
+    TabOrder = 0
+  end
 end

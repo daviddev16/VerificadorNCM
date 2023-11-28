@@ -2,9 +2,11 @@ program VerificadorNCMInvalido;
 
 uses
   Vcl.Forms,
-  Principal in 'Principal.pas' {Form2};
+  Principal in 'Principal.pas' {Form2},
+  LeitoresTabelaNCM in 'LeitoresTabelaNCM.pas';
 
 {$R *.res}
+{$APPTYPE CONSOLE}
 
 begin
   Application.Initialize;
