@@ -10,6 +10,7 @@ object Form2: TForm2
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object Button1: TButton
     Left = 168
@@ -18,5 +19,6 @@ object Form2: TForm2
     Height = 25
     Caption = 'Iniciar'
     TabOrder = 0
+    OnClick = Button1Click
   end
 end

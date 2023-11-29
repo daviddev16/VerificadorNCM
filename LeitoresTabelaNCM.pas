@@ -7,6 +7,7 @@ uses
   System.StrUtils,
   System.Types,
   System.UITypes,
+  System.IOUtils,
   System.Math,
   System.Classes,
   System.Variants,
@@ -18,6 +19,7 @@ uses
 type
 
   EProcessoStreamException = class(Exception);
+  EInicializacaoStreamException = class(Exception);
 
   { tipo uma struct hehe }
   TNCMUnTrib = record
@@ -38,60 +40,68 @@ type
     private
       procedure ProcessarLinhaBase(ConteudoLinha : String);
       procedure ProcessarStreamBase(var Stream : TStream);
+      procedure CriarSeNecessario(CaminhoArquivo : String);
       function PesquisaBinaria(VlNCM : Integer; Min : Integer; Max : Integer) : Integer;
 
     public
+      procedure ExportarParaArquivo(CaminhoArquivo : String);
+      procedure Exportar(var Stream : TStream);
       function Localizar(NCMStr : String) : TNCMUnTrib;
       constructor Create();
+
+
   end;
 
   TLeitorCSVWeb = class(TLeitorCSVBase)
 
-    private
-      NetHTTPClient  : TNetHTTPClient;
-      ConnURL        : String;
-
     public
-      procedure RequisitarInformacoes();
       constructor Create(ConnURL : String);
 
   end;
 
   TLeitorCSVArquivo = class(TLeitorCSVBase)
-  {
-    TODO: Armazenar dados localmente, apenas fazer a requisição novamente
-          se for necessário.
-  }
+
+    public
+      constructor Create(ArquivoLocal : String);
+
   end;
 
 implementation
 
+{ TLeitorCSVArquivo }
+
+constructor TLeitorCSVArquivo.Create(ArquivoLocal : String);
+var
+  ArquivoStream : TStream;
+begin
+  inherited Create;
+  if not String.IsNullOrEmpty(ArquivoLocal) and TFile.Exists(ArquivoLocal) then
+  begin
+    ArquivoStream := TFileStream.Create(ArquivoLocal, fmOpenReadWrite);
+    ProcessarStreamBase(ArquivoStream);
+    ArquivoStream.Free;
+  end
+  else
+    raise EInicializacaoStreamException.Create('Arquivo não existe ou campo informado é nulo.');
+end;
+
 { TLeitorCSVWeb }
 
 constructor TLeitorCSVWeb.Create(ConnURL : String);
-begin
-
-  Self.ConnURL := ConnURL;
-  NetHTTPClient := TNetHTTPClient.Create(nil);
-  inherited Create;
-end;
-
-{
-  Faz o processamentos das informações vindas de uma requisição GET, através
-  da URL informada em ConnURL.
-}
-procedure TLeitorCSVWeb.RequisitarInformacoes();
 var
   ContentStream : TStream;
+  NetHTTPClient : TNetHTTPClient;
 begin
-  if Assigned(NetHTTPClient) and not (String.IsNullOrEmpty(ConnURL)) then
+  inherited Create;
+  if not String.IsNullOrEmpty(ConnURL) then
   begin
+    NetHTTPClient := TNetHTTPClient.Create(nil);
     ContentStream := NetHTTPClient.Get(ConnURL).ContentStream;
     ProcessarStreamBase(ContentStream);
-    FreeAndNil(ContentStream);
-  end;
+  end
+  else
+    raise EInicializacaoStreamException.Create('URL inválida.');
 end;
-
 
 { TLeitorCSVBase }
 
@@ -114,7 +124,7 @@ begin
   try
     try
       StreamReader := TStreamReader.Create(Stream);
-      while StreamReader.EndOfStream do
+      while Not StreamReader.EndOfStream do
       begin
         ConteudoLinha := StreamReader.ReadLine;
         ProcessarLinhaBase(ConteudoLinha);
@@ -124,8 +134,10 @@ begin
         raise EProcessoStreamException.Create('Houve um erro no processamento da Stream -> ' + E.Message);
     end;
   finally
-    StreamReader.Close;
-    FreeAndNil(StreamReader);
+    if Assigned(StreamReader) then
+    begin
+      StreamReader.Free;
+    end;
   end;
 end;
 
@@ -164,7 +176,52 @@ begin
 end;
 
 {
-  Executa uma pesquisa binária no TList que armazena os "valores" de NCN
+  Exporta a tabela de NCM e header para Stream
+}
+procedure TLeitorCSVBase.Exportar(var Stream : TStream);
+var
+  StreamWriter : TStreamWriter;
+begin
+  if Not Assigned(Stream) then
+    raise EProcessoStreamException.Create('Stream de dados base é nulo.');
+  try
+    try
+      StreamWriter := TStreamWriter.Create(Stream, TEncoding.UTF8);
+      StreamWriter.AutoFlush := True;
+      StreamWriter.WriteLine('@' + String.Join(':', [Autor, Versao, TextoSefaz]));
+      for var NCMUbTribRec in NCMUnTribLista do
+      begin
+        StreamWriter.WriteLine(String.Join(',', [IntToStr(NCMUbTribRec.NCM), '', '',
+          NCMUbTribRec.UTribAbreviada, NCMUbTribRec.UTribDescricao]));
+      end;
+    except
+      on E:Exception do
+        raise EProcessoStreamException.Create('Houve um erro na exportação da Stream -> ' + E.Message);
+    end;
+  finally
+    if Assigned(StreamWriter) then
+    begin
+      StreamWriter.Free;
+    end;
+  end;
+end;
+
+{
+  Exporta para arquivo informando apenas o diretório, sem precisar criar a Stream
+  manualmente.
+}
+procedure TLeitorCSVBase.ExportarParaArquivo(CaminhoArquivo : String);
+var
+  ArquivoStream : TStream;
+begin
+  CriarSeNecessario(CaminhoArquivo);
+  ArquivoStream := TFileStream.Create(CaminhoArquivo, fmOpenReadWrite);
+  Exportar(ArquivoStream);
+  ArquivoStream.Free;
+end;
+
+{
+  Executa uma pesquisa binária no TList que armazena os "valores" de NCM
 }
 function TLeitorCSVBase.PesquisaBinaria(VlNCM : Integer; Min : Integer; Max : Integer) : Integer;
 var
@@ -196,6 +253,15 @@ begin
   Indice := PesquisaBinaria(VlNCM, 0, NCMUnTribLista.Count - 1);
   if Indice <> -1 then
     Result := NCMUnTribLista[Indice];
+end;
+
+{
+  Cria arquivo informado no caminho apenas se não existir.
+}
+procedure TLeitorCSVBase.CriarSeNecessario(CaminhoArquivo : String);
+begin
+  if Not String.IsNullOrEmpty(CaminhoArquivo) And Not TFile.Exists(CaminhoArquivo) then
+    TFile.Create(CaminhoArquivo).Free;
 end;
 
 end.

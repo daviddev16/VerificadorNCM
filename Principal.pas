@@ -14,14 +14,19 @@ uses
   Vcl.Forms,
   Vcl.Dialogs,
   Vcl.StdCtrls,
-  LeitoresTabelaNCM;
+  LeitoresTabelaNCM,
+  GerenciadorLeitor;
 
 type
   TForm2 = class(TForm)
     Button1: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
 
   private
-    { Private declarations }
+
+    LeitorCSV : TLeitorCSVBase;
+
   public
     { Public declarations }
   end;
@@ -33,5 +38,16 @@ implementation
 
 {$R *.dfm}
 
+
+procedure TForm2.Button1Click(Sender: TObject);
+begin
+  TGerenciador.LimparCacheLocal;
+end;
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+  LeitorCSV := TGerenciador.GetLeitorBase;
+  ShowMessage(LeitorCSV.ClassName);
+end;
 
 end.
