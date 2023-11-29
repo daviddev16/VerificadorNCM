@@ -115,8 +115,8 @@ begin
     MessageDlg(
       'Dados da tabela NCM:' + sLineBreak +
       'Texto Sefaz: ' + LeitorCSV.TextoSefaz + sLineBreak +
-      'Autor último upload: ' + LeitorCSV.Autor + sLineBreak +
-      'Versão: ' + LeitorCSV.Versao,
+      'Último upload: ' + LeitorCSV.Autor + sLineBreak +
+      'Versão CSV: ' + LeitorCSV.Versao,
       TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0, TMsgDlgBtn.mbOK);
   end;
 end;
