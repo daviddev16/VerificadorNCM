@@ -59,6 +59,8 @@
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
         <SanitizedProjectName>VerificadorNCMInvalido</SanitizedProjectName>
         <Custom_Styles>Luna|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Luna.vsf</Custom_Styles>
+        <VerInfo_Locale>1046</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=Daviddev16;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=Daviddev16;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>soapserver;IndySystem;vclwinx;fmx;vclie;DbxCommonDriver;bindengine;vcldb;IndyIPCommon;VCLRESTComponents;FireDACCommonODBC;FireDACCommonDriver;appanalytics;IndyProtocols;vclx;IndyIPClient;dbxcds;vcledge;vclFireDAC;bindcompvclwinx;bindcomp;FireDACCommon;IndyCore;RESTBackendComponents;bindcompfmx;bindcompdbx;inetdb;rtl;FireDACMySQLDriver;FireDACSqliteDriver;DbxClientDriver;FireDACADSDriver;RESTComponents;soapmidas;DBXSqliteDriver;vcl;vclactnband;IndyIPServer;dsnapxml;fmxFireDAC;dbexpress;dsnapcon;adortl;DBXMySQLDriver;VclSmp;inet;vclimg;vcltouch;FireDACPgDriver;FireDAC;fmxase;inetdbxpress;xmlrtl;tethering;NetworkProbeClient_11_3;dbrtl;bindcompvcl;dsnap;fmxdae;CloudService;FireDACMSAccDriver;CustomIPTransport;fmxobj;bindcompvclsmp;soaprtl;vcldsnap;DBXInterBaseDriver;FireDACIBDriver;dxSkinBasicRS28;dxSkinBlackRS28;dxSkinBlueprintRS28;dxSkinBlueRS28;dxSkinCaramelRS28;dxSkinCoffeeRS28;dxSkinDarkRoomRS28;dxSkinDarkSideRS28;dxSkinDevExpressDarkStyleRS28;dxSkinDevExpressStyleRS28;dxSkinFoggyRS28;dxSkinGlassOceansRS28;dxSkinHighContrastRS28;dxSkiniMaginaryRS28;dxSkinLilianRS28;dxSkinLiquidSkyRS28;dxSkinLondonLiquidSkyRS28;dxSkinMcSkinRS28;dxSkinMetropolisDarkRS28;dxSkinMetropolisRS28;dxSkinMoneyTwinsRS28;dxSkinOffice2007BlackRS28;dxSkinOffice2007BlueRS28;dxSkinOffice2007GreenRS28;dxSkinOffice2007PinkRS28;dxSkinOffice2007SilverRS28;dxSkinOffice2010BlackRS28;dxSkinOffice2010BlueRS28;dxSkinOffice2010SilverRS28;dxSkinOffice2013DarkGrayRS28;dxSkinOffice2013LightGrayRS28;dxSkinOffice2013WhiteRS28;dxSkinOffice2016ColorfulRS28;dxSkinOffice2016DarkRS28;dxSkinOffice2019BlackRS28;dxSkinOffice2019ColorfulRS28;dxSkinOffice2019DarkGrayRS28;dxSkinOffice2019WhiteRS28;dxSkinPumpkinRS28;dxSkinSevenClassicRS28;dxSkinSevenRS28;dxSkinSharpPlusRS28;dxSkinSharpRS28;dxSkinSilverRS28;dxSkinSpringTimeRS28;dxSkinStardustRS28;dxSkinSummer2008RS28;dxSkinTheAsphaltWorldRS28;dxSkinTheBezierRS28;dxSkinValentineRS28;dxSkinVisualStudio2013BlueRS28;dxSkinVisualStudio2013DarkRS28;dxSkinVisualStudio2013LightRS28;dxSkinVS2010RS28;dxSkinWhiteprintRS28;dxSkinWXIRS28;dxSkinXmas2008BlueRS28;$(DCC_UsePackage)</DCC_UsePackage>
@@ -68,6 +70,10 @@
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <Icon_MainIcon>VerificadorNCMInvalido_Icon.ico</Icon_MainIcon>
+        <UWP_DelphiLogo44>..\..\Desktop\validadorncm.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>..\..\Desktop\validadorncm.png</UWP_DelphiLogo150>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_UsePackage>soapserver;IndySystem;vclwinx;fmx;vclie;DbxCommonDriver;bindengine;vcldb;IndyIPCommon;VCLRESTComponents;FireDACCommonODBC;FireDACCommonDriver;appanalytics;IndyProtocols;vclx;IndyIPClient;dbxcds;vcledge;vclFireDAC;bindcompvclwinx;bindcomp;FireDACCommon;IndyCore;RESTBackendComponents;bindcompfmx;bindcompdbx;inetdb;rtl;FireDACMySQLDriver;FireDACSqliteDriver;DbxClientDriver;FireDACADSDriver;RESTComponents;soapmidas;DBXSqliteDriver;vcl;vclactnband;IndyIPServer;dsnapxml;fmxFireDAC;dbexpress;dsnapcon;adortl;DBXMySQLDriver;VclSmp;inet;vclimg;vcltouch;FireDACPgDriver;FireDAC;fmxase;inetdbxpress;xmlrtl;tethering;dbrtl;bindcompvcl;dsnap;fmxdae;CloudService;FireDACMSAccDriver;CustomIPTransport;fmxobj;bindcompvclsmp;soaprtl;vcldsnap;DBXInterBaseDriver;FireDACIBDriver;dxSkinBasicRS28;dxSkinBlackRS28;dxSkinBlueprintRS28;dxSkinBlueRS28;dxSkinCaramelRS28;dxSkinCoffeeRS28;dxSkinDarkRoomRS28;dxSkinDarkSideRS28;dxSkinDevExpressDarkStyleRS28;dxSkinDevExpressStyleRS28;dxSkinFoggyRS28;dxSkinGlassOceansRS28;dxSkinHighContrastRS28;dxSkiniMaginaryRS28;dxSkinLilianRS28;dxSkinLiquidSkyRS28;dxSkinLondonLiquidSkyRS28;dxSkinMcSkinRS28;dxSkinMetropolisDarkRS28;dxSkinMetropolisRS28;dxSkinMoneyTwinsRS28;dxSkinOffice2007BlackRS28;dxSkinOffice2007BlueRS28;dxSkinOffice2007GreenRS28;dxSkinOffice2007PinkRS28;dxSkinOffice2007SilverRS28;dxSkinOffice2010BlackRS28;dxSkinOffice2010BlueRS28;dxSkinOffice2010SilverRS28;dxSkinOffice2013DarkGrayRS28;dxSkinOffice2013LightGrayRS28;dxSkinOffice2013WhiteRS28;dxSkinOffice2016ColorfulRS28;dxSkinOffice2016DarkRS28;dxSkinOffice2019BlackRS28;dxSkinOffice2019ColorfulRS28;dxSkinOffice2019DarkGrayRS28;dxSkinOffice2019WhiteRS28;dxSkinPumpkinRS28;dxSkinSevenClassicRS28;dxSkinSevenRS28;dxSkinSharpPlusRS28;dxSkinSharpRS28;dxSkinSilverRS28;dxSkinSpringTimeRS28;dxSkinStardustRS28;dxSkinSummer2008RS28;dxSkinTheAsphaltWorldRS28;dxSkinTheBezierRS28;dxSkinValentineRS28;dxSkinVisualStudio2013BlueRS28;dxSkinVisualStudio2013DarkRS28;dxSkinVisualStudio2013LightRS28;dxSkinVS2010RS28;dxSkinWhiteprintRS28;dxSkinWXIRS28;dxSkinXmas2008BlueRS28;$(DCC_UsePackage)</DCC_UsePackage>
@@ -88,6 +94,7 @@
         <UsePackages>true</UsePackages>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=Daviddev16;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=Daviddev16;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -134,6 +141,13 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
+                <DeployFile LocalName="..\..\Desktop\validadorncm.png" Configuration="Debug" Class="UWP_DelphiLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo44x44.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\VerificadorNCMInvalido.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>VerificadorNCMInvalido.exe</RemoteName>

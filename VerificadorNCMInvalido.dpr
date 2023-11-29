@@ -13,6 +13,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.Title := 'Verificador de NCM inexistente';
   TStyleManager.TrySetStyle('Luna');
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;
