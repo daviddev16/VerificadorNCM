@@ -9,6 +9,7 @@ uses
   System.Variants,
   System.Classes,
   System.Diagnostics,
+  ShellAPI,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
@@ -21,19 +22,25 @@ uses
   Vcl.Grids,
   Vcl.DBGrids,
   Xml.XMLDoc,
-  Xml.XMLIntf;
+  Xml.XMLIntf,
+  Vcl.ExtCtrls;
 
 type
+
   TMainForm = class(TForm)
+
     BtnAtualizarTabela: TButton;
     DbGridNFe: TDBGrid;
     BtnDadosTabela: TButton;
     BtnAnalisarXml: TButton;
     OpenDialog1: TOpenDialog;
+    LlkSobre: TLinkLabel;
     procedure FormCreate(Sender: TObject);
     procedure BtnAtualizarTabelaClick(Sender: TObject);
     procedure BtnDadosTabelaClick(Sender: TObject);
     procedure BtnAnalisarXmlClick(Sender: TObject);
+    procedure LinkLabelClickEvent(Sender: TObject; const Link: string;
+      LinkType: TSysLinkType);
 
   private
 
@@ -41,6 +48,7 @@ type
     LeitorCSV : TLeitorCSVBase;
 
     const nmCdProduto = 'Cd. Produto';
+    const nmNomeProduto = 'Nome do Produto';
     const nmNCMProd = 'NCM';
     const nmStatus = 'Status';
 
@@ -55,6 +63,8 @@ type
 
     procedure DBGridDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol:
       Integer; Column: TColumn; State: TGridDrawState);
+
+
 
   public
     { Public declarations }
@@ -184,6 +194,7 @@ begin
 
   { inicializando colunas do DataSet }
   GridDataSet.FieldDefs.Add(nmCdProduto, ftString, 15);
+  GridDataSet.FieldDefs.Add(nmNomeProduto, ftString, 50);
   GridDataSet.FieldDefs.Add(nmNCMProd, ftString, 15);
   GridDataSet.FieldDefs.Add(nmStatus, ftString, 15);
   GridDataSet.CreateDataSet;
@@ -235,10 +246,12 @@ var
   NCMStr       : String;
   NCMXmlVl     : Integer;
   Status       : String;
+  NmProduto    : String;
   NCMUnTribRef : TNCMUnTrib;
 begin
 
   CProdValor  := ProdNodeList['cProd'].Text;
+  NmProduto   := ProdNodeList['xProd'].Text;
   NCMStr      := ProdNodeList['NCM'].Text;
   NCMXmlVl    := StrToInt(NCMStr);
 
@@ -251,6 +264,7 @@ begin
 
   InserirLinha([
     CProdValor,
+    NmProduto,
     NCMStr,
     Status
   ]);
@@ -274,6 +288,12 @@ end;
 procedure TMainForm.LimparTudo();
 begin
   GridDataSet.EmptyDataSet;
+end;
+
+procedure TMainForm.LinkLabelClickEvent(Sender: TObject; const Link: string;
+  LinkType: TSysLinkType);
+begin
+  ShellExecute(0, 'open', PChar(Link), nil, nil, SW_SHOWNORMAL);
 end;
 
 end.

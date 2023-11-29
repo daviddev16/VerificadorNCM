@@ -1,9 +1,9 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
-  Caption = 'Verificador de NCM vencido'
-  ClientHeight = 607
-  ClientWidth = 410
+  Caption = 'Verificador de NCM inexistente'
+  ClientHeight = 606
+  ClientWidth = 644
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,7 +14,7 @@ object MainForm: TMainForm
   TextHeight = 15
   object BtnAtualizarTabela: TButton
     Left = 8
-    Top = 574
+    Top = 573
     Width = 172
     Height = 25
     Caption = 'Atualizar tabela de NCM'
@@ -24,7 +24,7 @@ object MainForm: TMainForm
   object DbGridNFe: TDBGrid
     Left = 8
     Top = 48
-    Width = 385
+    Width = 628
     Height = 520
     ReadOnly = True
     TabOrder = 1
@@ -52,6 +52,15 @@ object MainForm: TMainForm
     Caption = 'Analisar XML'
     TabOrder = 3
     OnClick = BtnAnalisarXmlClick
+  end
+  object LlkSobre: TLinkLabel
+    Left = 602
+    Top = 579
+    Width = 34
+    Height = 19
+    Caption = '<a href="https://github.com/daviddev16/VerificadorNCM">Sobre</a>'
+    TabOrder = 4
+    OnLinkClick = LinkLabelClickEvent
   end
   object OpenDialog1: TOpenDialog
     Left = 200
