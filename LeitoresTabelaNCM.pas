@@ -14,7 +14,8 @@ uses
   System.Generics.Collections,
   System.Net.HttpClientComponent,
   System.Net.URLClient,
-  System.Net.HttpClient;
+  System.Net.HttpClient,
+  Dialogs;
 
 type
 
@@ -46,7 +47,7 @@ type
     public
       procedure ExportarParaArquivo(CaminhoArquivo : String);
       procedure Exportar(var Stream : TStream);
-      function Localizar(NCMStr : String) : TNCMUnTrib;
+      function Localizar(NCMStr : String; out NCMUnTrib : TNCMUnTrib) : Boolean;
       constructor Create();
 
 
@@ -98,6 +99,7 @@ begin
     NetHTTPClient := TNetHTTPClient.Create(nil);
     ContentStream := NetHTTPClient.Get(ConnURL).ContentStream;
     ProcessarStreamBase(ContentStream);
+    ShowMessage('Tabela de NCM atualizada foi baixada para uma tabela local.');
   end
   else
     raise EInicializacaoStreamException.Create('URL inválida.');
@@ -244,7 +246,7 @@ end;
 {
   Faz a localização do NCM passado em NCMStr
 }
-function TLeitorCSVBase.Localizar(NCMStr : String) : TNCMUnTrib;
+function TLeitorCSVBase.Localizar(NCMStr : String; out NCMUnTrib : TNCMUnTrib) : Boolean;
 var
   VlNCM  : Integer;
   Indice : Integer;
@@ -252,7 +254,12 @@ begin
   VlNCM := StrToInt(NCMStr);
   Indice := PesquisaBinaria(VlNCM, 0, NCMUnTribLista.Count - 1);
   if Indice <> -1 then
-    Result := NCMUnTribLista[Indice];
+  begin
+    NCMUnTrib := NCMUnTribLista[Indice];
+    Result := True;
+  end
+  else
+    Result := False;
 end;
 
 {
